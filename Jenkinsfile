@@ -5,7 +5,7 @@ pipeline {
             inheritFrom 'python'
         }
     }
-    agent any
+    // agent any
     tools { nodejs 'nodejs' }
     stages {
         stage('preflight') {
