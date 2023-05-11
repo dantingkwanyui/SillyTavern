@@ -3,24 +3,7 @@ pipeline {
     agent {
         kubernetes {
             inheritFrom 'python'
-            yaml '''
-apiVersion: v1
-kind: Pod
-metadata:
-labels:
-  component: ci
-spec:
-  # Use service account that can deploy to all namespaces
-//   serviceAccountName: cd-jenkins
-  containers:
-  - name: golang
-    image: golang:1.10
-    command:
-    - cat
-    tty: true
-    ports:
-      - port: 8000
-'''
+
         }
     }
     // agent any
