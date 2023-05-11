@@ -1,7 +1,9 @@
 /* groovylint-disable-next-line CompileStatic */
 pipeline {
     agent {
+        kubernetes {
         label 'jenkins-python'
+        }
     }
     tools { nodejs 'nodejs' }
     stages {
