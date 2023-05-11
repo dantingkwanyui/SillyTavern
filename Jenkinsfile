@@ -1,10 +1,10 @@
 /* groovylint-disable-next-line CompileStatic */
 pipeline {
-    // agent {
-    //     kubernetes {
-    //         inheritFrom 'jenkins-python'
-    //     }
-    // }
+    agent {
+        kubernetes {
+            inheritFrom 'python'
+        }
+    }
     agent any
     tools { nodejs 'nodejs' }
     stages {
