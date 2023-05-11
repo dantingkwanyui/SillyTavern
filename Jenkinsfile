@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('preflight') {
             steps {
-                echo 'Hello World~!!!!!!!!!!!!!!'
+                echo 'Hello World~!!!!!!!!!!!!!!!'
                 echo sh(returnStdout: true, script: 'env')
                 sh 'node -v'
             }
@@ -15,7 +15,7 @@ pipeline {
                 sh 'npm --version'
                 sh 'git log --reverse -1'
                 sh 'npm install'
-                sh 'npm start'
+                // sh 'npm start'
             }
         }
         // stage('test') {
