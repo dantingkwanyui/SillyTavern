@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('preflight') {
             steps {
-                echo 'Hello World~!!!!!!!!!!!!no!!!!!!!!!!!!'
+                echo 'Hello World~!!!!!!!!!!!!!!!!!!!!!!!!!!'
                 echo sh(returnStdout: true, script: 'env')
                 sh 'node -v'
             }
