@@ -2,7 +2,7 @@
 pipeline {
     agent {
         kubernetes {
-            label 'jenkins-python'
+            inheritFrom 'jenkins-python'
         }
     }
     tools { nodejs 'nodejs' }
