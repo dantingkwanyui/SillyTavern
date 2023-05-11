@@ -1,7 +1,7 @@
 /* groovylint-disable-next-line CompileStatic */
 pipeline {
     agent {
-        label "jenkins-python"
+        label 'jenkins-python'
     }
     tools { nodejs 'nodejs' }
     stages {
