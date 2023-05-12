@@ -5,6 +5,6 @@ provider:
 functions:
   silly-tavern-api:
     lang: golang-middleware
-    handler: ./stack
+    handler: stack
     image: core.harbor.on9.webredirect.org/silly-tavern/silly-tavern-api:latest
 
