@@ -3,12 +3,12 @@ pipeline {
     // options {
     //     disableConcurrentBuilds()
     // }
-    agent {
-        kubernetes {
-            inheritFrom 'slave'
-        }
-    }
-    // agent any
+    // agent {
+    //     kubernetes {
+    //         inheritFrom 'slave'
+    //     }
+    // }
+    agent any
     tools { nodejs 'nodejs' }
     stages {
         stage('preflight') {
