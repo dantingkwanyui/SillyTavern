@@ -15,7 +15,7 @@ pipeline {
     }
     tools { 
         nodejs 'nodejs' 
-       'org.jenkinsci.plugins.docker.commons.tools.DockerTool' '18.09'
+        dockerTool 'docker'
     }
     environment {
         FAAS_PW = credentials('openfaas-pw')
