@@ -29,6 +29,7 @@ pipeline {
                 echo sh(returnStdout: true, script: 'env')
                 sh 'node -v'
                 sh "docker version"
+                sh "service docker start"
             }
         }
         stage('faas-cli'){
