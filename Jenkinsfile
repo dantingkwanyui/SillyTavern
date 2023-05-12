@@ -30,7 +30,7 @@ pipeline {
                 sh 'curl -sSL https://cli.openfaas.com | sh'
                 sh 'export OPENFAAS_URL=https://gateway.on9.webredirect.org'
                 sh "export PASSWORD=${FAAS_PW}"
-                sh 'echo $PASSWORD | ./faas-cli login --password-stdin'
+                sh "echo $PASSWORD | ./faas-cli login --password-stdin"
                 sh "cd ${WORKSPACE}"
                 sh './faas-cli up'
             }
