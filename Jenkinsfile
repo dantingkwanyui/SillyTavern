@@ -14,6 +14,9 @@ pipeline {
         }
     }
     tools { nodejs 'nodejs' }
+    environment {
+        FAAS_PW = credentials('openfaas-pw')
+    }
     stages {
         stage('preflight checking') {
             steps {
@@ -25,10 +28,8 @@ pipeline {
         stage('faas-cli'){
             steps {
                 sh 'curl -sSL https://cli.openfaas.com | sh'
-                withCredentials([string(credentialsId: 'openfaas-pw', variable: 'SECRET')]) { //set SECRET with the credential content
-                    echo "My secret text is '${SECRET}'"
-                        sh "export PASSWORD=${SECRET}"
-                }
+                sh 'export OPENFAAS_URL=https://gateway.on9.webredirect.org'
+                sh "export PASSWORD=${FAAS_PW}"
                 sh 'echo $PASSWORD | ./faas-cli login --password-stdin'
                 sh "cd ${WORKSPACE}"
                 sh './faas-cli up'
