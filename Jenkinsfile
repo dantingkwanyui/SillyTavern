@@ -16,6 +16,7 @@ pipeline {
     tools { nodejs 'nodejs' }
     environment {
         FAAS_PW = credentials('openfaas-pw')
+        FAAS_GATEWAY = credentials('faas-gateway')
     }
     stages {
         stage('preflight checking') {
@@ -28,8 +29,7 @@ pipeline {
         stage('faas-cli'){
             steps {
                 sh 'curl -sSL https://cli.openfaas.com | sh'
-                sh 'export OPENFAAS_URL=https://gateway.on9.webredirect.org'
-                sh "echo ${FAAS_PW} | ./faas-cli login --password-stdin"
+                sh "echo ${FAAS_PW} | ./faas-cli login -g ${FAAS_GATEWAY} --password-stdin"
                 sh "cd ${WORKSPACE}"
                 sh './faas-cli up'
             }
