@@ -22,17 +22,17 @@ pipeline {
                 sh 'node -v'
             }
         }
-        stage('install faas-cli'){
+        stage('faas-cli'){
+            steps {
             sh 'curl -sSL https://cli.openfaas.com | sudo sh'
-                withCredentials([string(credentialsId: 'openfaas-pw', variable: 'SECRET')]) { //set SECRET with the credential content
-                echo "My secret text is '${SECRET}'"
-                    sh 'export PASSWORD=${SECRET}'
+                    withCredentials([string(credentialsId: 'openfaas-pw', variable: 'SECRET')]) { //set SECRET with the credential content
+                    echo "My secret text is '${SECRET}'"
+                        sh 'export PASSWORD=${SECRET}'
+                }
+                sh 'echo $PASSWORD | faas-cli login --password-stdin'
+                sh 'cd ${WORKSPACE}'
+                sh 'faas-cli up'
             }
-            sh 'echo $PASSWORD | faas-cli login --password-stdin'
-        }
-        stage('faas-cli deploy stage'){
-            sh 'cd ${WORKSPACE}'
-            sh 'faas-cli up'
         }
         stage('build') {
             steps {
