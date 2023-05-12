@@ -2,7 +2,7 @@
 pipeline {
     agent {
         kubernetes {
-            inheritFrom 'python'
+            inheritFrom 'slave'
         }
     }
     // agent any
