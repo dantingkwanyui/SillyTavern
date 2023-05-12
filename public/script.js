@@ -283,7 +283,7 @@ const system_messages = {
         is_user: false,
         is_name: true,
         mes: [
-            '<h2>Welcome to SillyTavern!</h2>',
+            '<h2>Welcome to SillyTavern by David Sun!</h2>',
             '<h3>In order to begin chatting:</h3>',
             '<ol>',
             '<li>Connect to one of the supported generation APIs (the plug icon)</li>',
