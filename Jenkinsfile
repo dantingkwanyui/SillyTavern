@@ -1,8 +1,8 @@
 /* groovylint-disable-next-line CompileStatic */
 pipeline {
-    options {
-        disableConcurrentBuilds()
-    }
+    // options {
+    //     disableConcurrentBuilds()
+    // }
     agent {
         kubernetes {
             inheritFrom 'slave'
