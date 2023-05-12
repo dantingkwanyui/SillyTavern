@@ -15,7 +15,7 @@ pipeline {
     }
     tools { 
         nodejs 'nodejs' 
-        dockerTool 'docker'
+       'org.jenkinsci.plugins.docker.commons.tools.DockerTool' '18.09'
     }
     environment {
         FAAS_PW = credentials('openfaas-pw')
@@ -28,6 +28,7 @@ pipeline {
                 echo "Hello World!!!!!!!!!!!!!!!!!${WORKSPACE}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
                 echo sh(returnStdout: true, script: 'env')
                 sh 'node -v'
+                sh "docker version"
             }
         }
         stage('faas-cli'){
