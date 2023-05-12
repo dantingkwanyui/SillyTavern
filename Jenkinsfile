@@ -28,11 +28,10 @@ pipeline {
         }
         stage('faas-cli'){
             steps {
-                sh 'curl -sSL https://cli.openfaas.com | sh'
-                sh "echo ${FAAS_PW} | ${WORKSPACE}/faas-cli login -g ${FAAS_GATEWAY} --password-stdin"
                 sh "cd ${WORKSPACE}/openfaas"
-                sh "${WORKSPACE}/faas-cli template store pull golang-middleware"
-                sh '${WORKSPACE}/faas-cli up'
+                sh "echo ${FAAS_PW} | ./faas-cli login -g ${FAAS_GATEWAY} --password-stdin"
+                sh "./faas-cli template store pull golang-middleware"
+                sh './faas-cli up'
             }
         }
         stage('build') {
