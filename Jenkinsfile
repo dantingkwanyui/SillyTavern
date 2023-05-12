@@ -20,7 +20,7 @@ pipeline {
     stages {
         stage('preflight checking') {
             steps {
-                echo "Hello World!!!!!!!!!!!!!!!${WORKSPACE}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+                echo "Hello World!!!!!!!!!!!!!!!!${WORKSPACE}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
                 echo sh(returnStdout: true, script: 'env')
                 sh 'node -v'
             }
