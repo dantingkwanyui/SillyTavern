@@ -24,7 +24,7 @@ pipeline {
         }
         stage('faas-cli'){
             steps {
-            sh 'curl -sSL https://cli.openfaas.com | sudo sh'
+            sh 'curl -sSL https://cli.openfaas.com | sh'
                     withCredentials([string(credentialsId: 'openfaas-pw', variable: 'SECRET')]) { //set SECRET with the credential content
                     echo "My secret text is '${SECRET}'"
                         sh 'export PASSWORD=${SECRET}'
