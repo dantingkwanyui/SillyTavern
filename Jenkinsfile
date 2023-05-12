@@ -33,7 +33,7 @@ pipeline {
                 sh "echo ${FAAS_PW} | ${FAAS_PATH}/faas-cli login -g ${FAAS_GATEWAY} --password-stdin"
                 sh "${FAAS_PATH}/faas-cli template store pull golang-middleware"
                 sh '''#!/bin/bash
-                    ${FAAS_PATH}/faas-cli up -f stack.yml
+                    ${FAAS_PATH}/faas-cli up -f ${FAAS_PATH}/stack.yml
                 '''
             }
         }
