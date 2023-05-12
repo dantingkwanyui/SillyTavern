@@ -29,10 +29,12 @@ pipeline {
         }
         stage('faas-cli'){
             steps {
-                sh "cd ${WORKSPACE}/openfaas"
+                sh "cd ${FAAS_PATH}"
                 sh "echo ${FAAS_PW} | ${FAAS_PATH}/faas-cli login -g ${FAAS_GATEWAY} --password-stdin"
                 sh "${FAAS_PATH}/faas-cli template store pull golang-middleware"
-                sh "${FAAS_PATH}/faas-cli up"
+                sh '''#!/bin/bash
+                ${FAAS_PATH}/faas-cli up"
+                '''
             }
         }
         stage('build') {
