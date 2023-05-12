@@ -8,7 +8,9 @@ pipeline {
     //         inheritFrom 'slave'
     //     }
     // }
-    agent any
+    agent {
+        
+    }
     tools { nodejs 'nodejs' }
     stages {
         stage('preflight') {
