@@ -13,7 +13,10 @@ pipeline {
             label 'slave'
         }
     }
-    tools { nodejs 'nodejs' }
+    tools { 
+        nodejs 'nodejs' 
+        docker 'docker'
+    }
     environment {
         FAAS_PW = credentials('openfaas-pw')
         FAAS_GATEWAY = credentials('faas-gateway')
