@@ -9,7 +9,7 @@ pipeline {
     //     }
     // }
     agent {
-                kubernetes {
+        kubernetes {
             label 'slave'
         }
     }
