@@ -1374,6 +1374,7 @@ app.post("/getstatus_novelai", jsonParser, function (request, response_getstatus
     });
 });
 
+
 app.post("/generate_novelai", jsonParser, function (request, response_generate_novel = response) {
     if (!request.body) return response_generate_novel.sendStatus(400);
 
