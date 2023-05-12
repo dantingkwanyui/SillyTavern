@@ -216,7 +216,7 @@ app.use(doubleCsrfProtection);
 // CORS Settings //
 const cors = require('cors');
 const CORS = cors({
-    origin: 'null',
+    origin: '*',
     methods: ['OPTIONS']
 });
 

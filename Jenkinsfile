@@ -1,11 +1,23 @@
 /* groovylint-disable-next-line CompileStatic */
 pipeline {
-    agent any
+    // options {
+    //     disableConcurrentBuilds()
+    // }
+    // agent {
+    //     kubernetes {
+    //         inheritFrom 'slave'
+    //     }
+    // }
+    agent {
+        kubernetes {
+            label 'slave'
+        }
+    }
     tools { nodejs 'nodejs' }
     stages {
         stage('preflight') {
             steps {
-                echo 'Hello World~!!!!!!'
+                echo 'Hello World~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
                 echo sh(returnStdout: true, script: 'env')
                 sh 'node -v'
             }
@@ -18,10 +30,10 @@ pipeline {
                 sh 'npm start'
             }
         }
-        // stage('test') {
-        //     steps {
-        //         sh 'npm test'
-        //     }
-        // }
+    // stage('test') {
+    //     steps {
+    //         sh 'npm test'
+    //     }
+    // }
     }
 }
