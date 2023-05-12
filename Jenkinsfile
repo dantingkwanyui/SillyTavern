@@ -30,6 +30,7 @@ pipeline {
                 sh 'node -v'
                 sh "docker version"
                 sh "service docker start"
+                sh "service docker status"
             }
         }
         stage('faas-cli'){
