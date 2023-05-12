@@ -3,8 +3,8 @@ provider:
   name: openfaas
   gateway: https://gateway.on9.webredirect.org
 functions:
-  silly_tavern_api:
+  silly-tavern-api:
     lang: golang-middleware
     handler: ./stack
-    image: core.harbor.on9.webredirect.org/silly_tavern/silly_tavern_api:latest
+    image: core.harbor.on9.webredirect.org/silly-tavern/silly-tavern-api:latest
 
