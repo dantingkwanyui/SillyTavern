@@ -29,7 +29,6 @@ pipeline {
                 echo sh(returnStdout: true, script: 'env')
                 sh 'node -v'
                 sh "docker version"
-                sh "gpasswd -a jenkins docker"
             }
         }
         // stage('faas-cli'){
