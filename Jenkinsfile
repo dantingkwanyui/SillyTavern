@@ -31,6 +31,7 @@ pipeline {
                 sh 'curl -sSL https://cli.openfaas.com | sh'
                 sh "echo ${FAAS_PW} | ./faas-cli login -g ${FAAS_GATEWAY} --password-stdin"
                 sh "cd ${WORKSPACE}"
+                sh "./faas-cli template store pull golang-middleware"
                 sh './faas-cli up'
             }
         }
