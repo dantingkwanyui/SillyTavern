@@ -15,7 +15,7 @@ const defaultUrl = "https://kobold-ai-extra.on9.webredirect.org";
 
 const extension_settings = {
     apiUrl: defaultUrl,
-    autoConnect: false,
+    autoConnect: true,
     disabledExtensions: [],
     memory: {},
     note: {
