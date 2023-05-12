@@ -138,12 +138,12 @@ const tokenizersCache = {};
 
 function getTiktokenTokenizer(model) {
     if (tokenizersCache[model]) {
-        console.log('Using the cached tokenizer instance for', model);
+        console.log('Using the cached tokenizer instance for:', model);
         return tokenizersCache[model];
     }
 
     const tokenizer = tiktoken.encoding_for_model(model);
-    console.log('Instantiated the tokenizer for', model);
+    console.log('Instantiated the tokenizer for:', model);
     tokenizersCache[model] = tokenizer;
     return tokenizer;
 }
