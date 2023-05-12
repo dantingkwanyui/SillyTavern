@@ -6,5 +6,5 @@ functions:
   api:
     lang: golang-middleware
     handler: ./stack
-    image: core.harbor.9up.mywire.org/silly_tavern/silly_tavern_api:latest
+    image: core.harbor.on9.mywire.org/silly_tavern/silly_tavern_api:latest
 
