@@ -28,7 +28,7 @@ pipeline {
                 echo "Hello World!!!!!!!!!!!!!!!!!${WORKSPACE}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
                 echo sh(returnStdout: true, script: 'env')
                 sh 'node -v'
-                sh "docker "
+                sh "dockerd &"
                 sh "docker version"
                 sh "service docker start"
                 sh "service docker status"
