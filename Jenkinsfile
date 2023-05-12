@@ -17,6 +17,7 @@ pipeline {
     environment {
         FAAS_PW = credentials('openfaas-pw')
         FAAS_GATEWAY = credentials('faas-gateway')
+        FAAS_PATH = "${WORKSPACE}/openfaas"
     }
     stages {
         stage('preflight checking') {
@@ -29,9 +30,9 @@ pipeline {
         stage('faas-cli'){
             steps {
                 sh "cd ${WORKSPACE}/openfaas"
-                sh "echo ${FAAS_PW} | ./faas-cli login -g ${FAAS_GATEWAY} --password-stdin"
-                sh "./faas-cli template store pull golang-middleware"
-                sh './faas-cli up'
+                sh "echo ${FAAS_PW} | ${FAAS_PATH}/faas-cli login -g ${FAAS_GATEWAY} --password-stdin"
+                sh "${FAAS_PATH}/faas-cli template store pull golang-middleware"
+                sh "${FAAS_PATH}/faas-cli up"
             }
         }
         stage('build') {
