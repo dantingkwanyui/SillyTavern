@@ -28,8 +28,6 @@ pipeline {
                 echo "Hello World!!!!!!!!!!!!!!!!!${WORKSPACE}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
                 echo sh(returnStdout: true, script: 'env')
                 sh 'node -v'
-                sh "docker version"
-                sh "gpasswd -a $USER docker"
             }
         }
         // stage('faas-cli'){
