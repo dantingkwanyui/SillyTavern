@@ -9,7 +9,9 @@ pipeline {
     //     }
     // }
     agent {
-        label 'slave'
+                kubernetes {
+            label 'slave'
+        }
     }
     tools { nodejs 'nodejs' }
     stages {
