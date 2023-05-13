@@ -23,7 +23,8 @@ pipeline {
     }
     stages {
         stage('Openfaas') {
-            container('dind') {
+            steps {
+                container('dind') {
                         sh '''
                                     apk add curl
                                     curl -sSL https://cli.openfaas.com | sh
@@ -37,6 +38,7 @@ pipeline {
                                     faas-cli template store pull golang-middleware
                                     faas-cli up
                     """
+                }
             }
         }
     }
