@@ -7,4 +7,5 @@ functions:
     lang: golang-middleware
     handler: ./stack
     image: core.harbor.on9.webredirect.org/silly-tavern/silly-tavern-api:latest
-
+    secrets:
+      - harbor-user
