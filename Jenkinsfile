@@ -22,10 +22,8 @@ pipeline {
         HARBOR_DOCKER_USER = credentials('HARBOR_DOCKER_USER')
         HARBOR_DOCKER_PASSWORD = credentials('HARBOR_DOCKER_PASSWORD')
     }
-    stages {
-        stage('Start') {
-            steps {
-                container('dind') {
+    container('dind') {
+        stages {
                     stage('Install packages') {
                         steps {
                             sh '''
@@ -51,8 +49,6 @@ pipeline {
                     """
                         }
                     }
-                }
-            }
         }
     }
 // steps {
