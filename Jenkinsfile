@@ -14,24 +14,36 @@ pipeline {
         nodejs 'nodejs'
     }
     environment {
-        FAAS_PW = credentials('openfaas-pw')
-        FAAS_GATEWAY = credentials('faas-gateway')
-        FAAS_PATH = '${WORKSPACE}/openfaas'
+        OPENFAAS_PASSWORD = credentials('OPENFAAS_PASSWORD')
+        OPENFAAS_URL = credentials('OPENFAAS_URL')
+        OPENFAAS_PATH = "${WORKSPACE}/openfaas"
+        HARBOR_DOCKER_HOST = credentials('HARBOR_DOCKER_HOST')
+        HARBOR_DOCKER_USER = credentials('HARBOR_DOCKER_USER')
+        HARBOR_DOCKER_PASSWORD = credentials('HARBOR_DOCKER_PASSWORD')
     }
     stages {
         stage('preflight checking') {
-                steps('docker check') {
                     container('dind') {
-                                sh '''
-                                    cd ${FAAS_PATH}
+                    steps('Install packages') {
+                    sh '''
                                     apk add curl
                                     curl -sSL https://cli.openfaas.com | sh
+                    '''
+                    }
+                    steps('Login') {
+                    sh """
                                     echo ${FAAS_PW} | faas-cli login -g ${FAAS_GATEWAY} --password-stdin
+                                    docker login --username=$DOCKER_USER --password=$DOCKER_PASS $DOCKER_HOST
+                    """
+                    }
+                    steps('Deploy') {
+                    sh """
+                                    cd ${OPENFAAS_PATH}
                                     faas-cli template store pull golang-middleware
                                     faas-cli up
-                                '''
+                    """
                     }
-                }
+                    }
         // steps {
         //     echo "Hello World!!!!!!!!!!!!!!!!!!${WORKSPACE}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         //     echo sh(returnStdout: true, script: 'env')
