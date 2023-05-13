@@ -38,34 +38,16 @@ pipeline {
                 }
             }
         }
+        stage('Nodejs') {
+            steps {
+                sh '''
+                    node -v'
+                    npm --version
+                    git log --reverse -1
+                    npm install
+                    npm start
+                '''
+            }
+        }
     }
-// steps {
-//     echo "Hello World!!!!!!!!!!!!!!!!!!${WORKSPACE}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-//     echo sh(returnStdout: true, script: 'env')
-//     sh 'apk add curl'
-//     sh 'node -v'
-//     sh "docker version"
-// }
-// stage('faas-cli'){
-//     steps {
-//         sh "cd ${FAAS_PATH}"
-//         sh "echo ${FAAS_PW} | ${FAAS_PATH}/faas-cli login -g ${FAAS_GATEWAY} --password-stdin"
-//         sh "${FAAS_PATH}/faas-cli template store pull golang-middleware"
-//         sh "${FAAS_PATH}/faas-cli up -f ${FAAS_PATH}/stack.yml"
-//     }
-// }
-// stage('build') {
-//     steps {
-//         sh "cd ${WORKSPACE}"
-//         sh 'npm --version'
-//         sh 'git log --reverse -1'
-//         sh 'npm install'
-//         sh 'npm start'
-//     }
-// }
-// stage('test') {
-//     steps {
-//         sh 'npm test'
-//     }
-// }
 }
