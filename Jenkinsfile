@@ -27,6 +27,7 @@ pipeline {
             steps {
                 echo "Hello World!!!!!!!!!!!!!!!!!!${WORKSPACE}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
                 echo sh(returnStdout: true, script: 'env')
+                sh 'apk add curl'
                 sh 'node -v'
                 // sh "docker version"
             }
