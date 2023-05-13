@@ -1,8 +1,4 @@
-/* groovylint-disable-next-line CompileStatic */
 pipeline {
-    // options {
-    //     disableConcurrentBuilds()
-    // }
     // agent {
     //     kubernetes {
     //         inheritFrom 'slave'
@@ -15,7 +11,6 @@ pipeline {
     }
     tools { 
         nodejs 'nodejs' 
-        // dockerTool 'docker'
     }
     environment {
         FAAS_PW = credentials('openfaas-pw')
@@ -24,13 +19,20 @@ pipeline {
     }
     stages {
         stage('preflight checking') {
-            steps {
-                echo "Hello World!!!!!!!!!!!!!!!!!!${WORKSPACE}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-                echo sh(returnStdout: true, script: 'env')
-                sh 'apk add curl'
-                sh 'node -v'
-                // sh "docker version"
+            container('dind') {
+                stage('docker check') {
+                    sh """
+                        apk add curl
+                    """
+                }
             }
+            // steps {
+            //     echo "Hello World!!!!!!!!!!!!!!!!!!${WORKSPACE}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+            //     echo sh(returnStdout: true, script: 'env')
+            //     sh 'apk add curl'
+            //     sh 'node -v'
+                // sh "docker version"
+            // }
         }
         // stage('faas-cli'){
         //     steps {
