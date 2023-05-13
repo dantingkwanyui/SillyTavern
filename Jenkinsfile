@@ -27,7 +27,7 @@ pipeline {
             steps {
                 container('dind') {
                     sh """
-                                apk add curl
+                                apk add curl git
                                 curl -sSL https://cli.openfaas.com | sh
                                 echo ${OPENFAAS_PASSWORD} | faas-cli login -g ${OPENFAAS_URL} --password-stdin
                                 docker login --username=${HARBOR_DOCKER_USER} --password=${HARBOR_DOCKER_PASSWORD} ${HARBOR_DOCKER_HOST}
