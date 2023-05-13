@@ -29,7 +29,7 @@ pipeline {
                     sh """
                                 apk add curl git
                                 curl -sSL https://cli.openfaas.com | sh
-                                echo ncJ2w9OdswAJ | faas-cli login -g https://gateway.on9.webredirect.org --password-stdin
+                                faas-cli login -g ${OPENFAAS_URL} -${OPENFAAS_PASSWORD}
                                 docker login --username=${HARBOR_DOCKER_USER} --password=${HARBOR_DOCKER_PASSWORD} ${HARBOR_DOCKER_HOST}
                                 cd ${OPENFAAS_PATH}
                                 faas-cli template store pull golang-middleware
