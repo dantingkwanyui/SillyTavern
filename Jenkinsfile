@@ -25,18 +25,14 @@ pipeline {
         stage('Openfaas') {
             steps {
                 container('dind') {
-                        sh '''
-                                    apk add curl
-                                    curl -sSL https://cli.openfaas.com | sh
-                    '''
-                        sh """
-                                    echo ${FAAS_PW} | faas-cli login -g ${FAAS_GATEWAY} --password-stdin
-                                    docker login --username=$DOCKER_USER --password=$DOCKER_PASS $DOCKER_HOST
-                    """
-                        sh """
-                                    cd ${OPENFAAS_PATH}
-                                    faas-cli template store pull golang-middleware
-                                    faas-cli up
+                    sh """
+                                apk add curl
+                                curl -sSL https://cli.openfaas.com | sh
+                                echo ${OPENFAAS_PASSWORD} | faas-cli login -g ${OPENFAAS_URL} --password-stdin
+                                docker login --username=$DOCKER_USER --password=$DOCKER_PASS $DOCKER_HOST
+                                cd ${OPENFAAS_PATH}
+                                faas-cli template store pull golang-middleware
+                                faas-cli up
                     """
                 }
             }
