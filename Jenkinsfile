@@ -1,4 +1,3 @@
-/* groovylint-disable NestedBlockDepth */
 /* groovylint-disable-next-line CompileStatic */
 pipeline {
     // agent {
@@ -23,33 +22,27 @@ pipeline {
         HARBOR_DOCKER_PASSWORD = credentials('HARBOR_DOCKER_PASSWORD')
     }
     stages {
-        container('dind') {
-            stages {
-                    stage('Install packages') {
-                        steps {
-                            sh '''
+        stage('Openfaas') {
+            container('dind') {
+                stage('Install packages') {
+                        sh '''
                                     apk add curl
                                     curl -sSL https://cli.openfaas.com | sh
                     '''
-                        }
-                    }
-                    stage('Login') {
-                        steps {
-                            sh """
+                }
+                stage('Login') {
+                        sh """
                                     echo ${FAAS_PW} | faas-cli login -g ${FAAS_GATEWAY} --password-stdin
                                     docker login --username=$DOCKER_USER --password=$DOCKER_PASS $DOCKER_HOST
                     """
-                        }
-                    }
-                    stage('Deploy') {
-                        steps {
-                            sh """
+                }
+                stage('Deploy') {
+                        sh """
                                     cd ${OPENFAAS_PATH}
                                     faas-cli template store pull golang-middleware
                                     faas-cli up
                     """
-                        }
-                    }
+                }
             }
         }
     }
