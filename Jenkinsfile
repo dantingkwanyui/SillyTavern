@@ -28,7 +28,7 @@ pipeline {
                 echo "Hello World!!!!!!!!!!!!!!!!!!${WORKSPACE}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
                 echo sh(returnStdout: true, script: 'env')
                 sh 'node -v'
-                sh "docker version"
+                // sh "docker version"
             }
         }
         // stage('faas-cli'){
