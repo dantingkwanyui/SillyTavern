@@ -41,7 +41,7 @@ pipeline {
         stage('Nodejs') {
             steps {
                 sh '''
-                    node -v'
+                    node -v
                     npm --version
                     git log --reverse -1
                     npm install
