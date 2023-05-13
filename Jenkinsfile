@@ -15,7 +15,7 @@ pipeline {
     }
     tools { 
         nodejs 'nodejs' 
-        dockerTool 'docker'
+        // dockerTool 'docker'
     }
     environment {
         FAAS_PW = credentials('openfaas-pw')
