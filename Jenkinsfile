@@ -29,7 +29,7 @@ pipeline {
                                 apk add curl
                                 curl -sSL https://cli.openfaas.com | sh
                                 echo ${OPENFAAS_PASSWORD} | faas-cli login -g ${OPENFAAS_URL} --password-stdin
-                                docker login --username=$DOCKER_USER --password=$DOCKER_PASS $DOCKER_HOST
+                                docker login --username=${DOCKER_USER} --password=${DOCKER_PASS} ${DOCKER_HOST}
                                 cd ${OPENFAAS_PATH}
                                 faas-cli template store pull golang-middleware
                                 faas-cli up
