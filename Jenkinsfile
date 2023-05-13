@@ -22,7 +22,7 @@ pipeline {
         HARBOR_DOCKER_PASSWORD = credentials('HARBOR_DOCKER_PASSWORD')
     }
     stages {
-        stage('Openfaas') {
+        stages('Openfaas') {
             container('dind') {
                 stage('Install packages') {
                         sh '''
