@@ -23,31 +23,31 @@ pipeline {
     }
     stages {
         container('dind') {
-                    stage('Install packages') {
-                        steps {
+            stage('Install packages') {
+                steps {
                     sh '''
                                     apk add curl
                                     curl -sSL https://cli.openfaas.com | sh
                     '''
-                        }
-                    }
-                    stage('Login') {
-                        steps {
+                }
+            }
+            stage('Login') {
+                steps {
                     sh """
                                     echo ${FAAS_PW} | faas-cli login -g ${FAAS_GATEWAY} --password-stdin
                                     docker login --username=$DOCKER_USER --password=$DOCKER_PASS $DOCKER_HOST
                     """
-                        }
-                    }
-                    stage('Deploy') {
-                        steps {
+                }
+            }
+            stage('Deploy') {
+                steps {
                     sh """
                                     cd ${OPENFAAS_PATH}
                                     faas-cli template store pull golang-middleware
                                     faas-cli up
                     """
-                        }
-                    }
+                }
+            }
         }
     }
 // steps {
