@@ -16,14 +16,19 @@ pipeline {
     environment {
         FAAS_PW = credentials('openfaas-pw')
         FAAS_GATEWAY = credentials('faas-gateway')
-        FAAS_PATH = './openfaas'
+        FAAS_PATH = '${WORKSPACE}/openfaas'
     }
     stages {
         stage('preflight checking') {
                 steps('docker check') {
                     container('dind') {
                                 sh '''
+                                    cd ${FAAS_PATH}
                                     apk add curl
+                                    curl -sSL https://cli.openfaas.com | sh
+                                    echo ${FAAS_PW} | faas-cli login -g ${FAAS_GATEWAY} --password-stdin
+                                    faas-cli template store pull golang-middleware
+                                    faas-cli up
                                 '''
                     }
                 }
@@ -32,7 +37,7 @@ pipeline {
         //     echo sh(returnStdout: true, script: 'env')
         //     sh 'apk add curl'
         //     sh 'node -v'
-        // sh "docker version"
+        //     sh "docker version"
         // }
         }
     // stage('faas-cli'){
