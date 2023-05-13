@@ -20,7 +20,7 @@ pipeline {
     stages {
         stage('preflight checking') {
             container('dind') {
-                stage('docker check') {
+                steps('docker check') {
                     sh """
                         apk add curl
                     """
