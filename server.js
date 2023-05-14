@@ -1675,7 +1675,7 @@ app.post("/importchat", urlencodedParser, function (request, response) {
                                 },
                                 ...history.msgs.map(
                                     (message) => ({
-                                        name: message.src.is_human ? 'You' : ch_name,
+                                        name: message.src.is_human ? 'Me' : ch_name,
                                         is_user: message.src.is_human,
                                         is_name: true,
                                         send_date: humanizedISO8601DateTime(),
