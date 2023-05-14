@@ -1668,7 +1668,7 @@ app.post("/importchat", urlencodedParser, function (request, response) {
                         from(history) {
                             return [
                                 {
-                                    user_name: 'You',
+                                    user_name: 'Me',
                                     character_name: ch_name,
                                     create_date: humanizedISO8601DateTime(),
 
